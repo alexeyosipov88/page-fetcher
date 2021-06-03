@@ -2,7 +2,7 @@ const args = process.argv.slice(2);
 const request = require('request');
 const fs = require('fs');
 const fetcher = (url, callback) => {
-  request(url, function (error, response, body) {
+  request(url, (error, response, body) => {
     if (error) {
       console.log(error);
       return;
@@ -11,12 +11,12 @@ const fetcher = (url, callback) => {
     }
   });
 };
-fetcher(args[0], (body) =>{
-    fs.writeFile(args[1], body, err => {
-      if (err) {
-        console.error(err)
-        return;
-      } else console.log(`Donwloaded and saved ${fs.statSync(args[1]).size} bytes in ${args[1]} bytes`)
-    })
+fetcher(args[0], (body) => {
+  fs.writeFile(args[1], body, err => {
+    if (err) {
+      console.error(err);
+      return;
+    } else console.log(`Donwloaded and saved ${fs.statSync(args[1]).size} bytes in ${args[1]} bytes`);
+  });
 });
 
